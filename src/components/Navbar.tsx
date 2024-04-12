@@ -7,18 +7,19 @@ import Cart from "./Cart";
 import { cookies } from "next/headers";
 import { getServerSideUser } from "@/lib/payload-utils";
 import UserAccountNav from "./UserAccountNav";
+import MobileNav from "./MobileNav";
 
 const Navbar = async () => {
     const nextCookies = cookies();
     const { user } = await getServerSideUser(nextCookies);
   return (
-    
     <div className="bg-white sticky z-50 top-0 inset-x-0 h-16">
       <header className="relative bg-white">
         <MaxWidthWrapper>
           <div className="border-b border-gray-200">
             <div className="flex h-16 items-center">
               {/*TODO: Mobile nav*/}
+              <MobileNav />
 
               <div className="ml-4 flex lg:ml-0">
                 <Link href="/">
@@ -45,7 +46,7 @@ const Navbar = async () => {
                   {/*A condtion that says if we have a user when we see 
                   dropdown that contains the users informations and options to log-out*/}
                   {user ? (
-                    <UserAccountNav user={user}/>
+                    <UserAccountNav user={user} />
                   ) : (
                     <Link
                       href="/sing-up"
